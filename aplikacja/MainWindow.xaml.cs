@@ -10,7 +10,7 @@ namespace Gra2D
 {
     public partial class MainWindow : Window
     {
-        // Stałe reprezentujące rodzaje terenu
+        // Stałe reprezentujące rodzaje terenu 
         public const int LAS = 1;     // las
         public const int LAKA = 2;     // łąka
         public const int SKALA = 3;   // skały
@@ -21,8 +21,6 @@ namespace Gra2D
         private int wysokoscMapy;
         // Dwuwymiarowa tablica kontrolek Image reprezentujących segmenty mapy
         private Image[,] tablicaTerenu;
-        // Rozmiar jednego segmentu mapy w pikselach
-
         // Tablica obrazków terenu – indeks odpowiada rodzajowi terenu
         // Indeks 1: las, 2: łąka, 3: skały
         private BitmapImage[] obrazyTerenu = new BitmapImage[ILE_TERENOW];
