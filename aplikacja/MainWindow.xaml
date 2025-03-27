@@ -1,4 +1,4 @@
-﻿<Window x:Class="Gra2D.MainWindow"
+﻿<Window x:Class="Aplikacja.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Gra WPF" Height="600" Width="800"

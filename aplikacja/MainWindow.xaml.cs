@@ -6,7 +6,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
-namespace Gra2D
+namespace Aplikacja
 {
     public partial class MainWindow : Window
     {
@@ -144,10 +144,10 @@ namespace Gra2D
             int nowyX = pozycjaGraczaX;
             int nowyY = pozycjaGraczaY;
             //zmiana pozycji gracza
-            if (e.Key == Key.Up) nowyY--;
-            else if (e.Key == Key.Down) nowyY++;
-            else if (e.Key == Key.Left) nowyX--;
-            else if (e.Key == Key.Right) nowyX++;
+            if (e.Key == Key.W) nowyY--;
+            else if (e.Key == Key.S) nowyY++;
+            else if (e.Key == Key.A) nowyX--;
+            else if (e.Key == Key.D) nowyX++;
             //Gracz nie może wyjść poza mapę
             if (nowyX >= 0 && nowyX < szerokoscMapy && nowyY >= 0 && nowyY < wysokoscMapy)
             {
