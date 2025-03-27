@@ -46,6 +46,7 @@ namespace Aplikacja
             BitmapImage bmpGracza = new BitmapImage(new Uri("gracz.png", UriKind.Relative));
             obrazGracza.Source = bmpGracza;
         }
+
         private void WczytajObrazyTerenu()
         {
             // Zakładamy, że tablica jest indeksowana od 0, ale używamy indeksów 1-3
@@ -160,8 +161,7 @@ namespace Aplikacja
                 }
             }
 
-            // Obsługa wycinania lasu – naciskamy klawisz C
-            if (e.Key == Key.C)
+            if (e.Key == Key.B)
             {
                 if (mapa[pozycjaGraczaY, pozycjaGraczaX] == LAS)//jeśli gracz stoi na polu lasu
                 {
