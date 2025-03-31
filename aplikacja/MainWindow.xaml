@@ -9,12 +9,25 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <!-- Panel sterowania -->
-        <StackPanel Orientation="Horizontal" Margin="10">
+        <StackPanel x:Name="Panel_gorny" Visibility="Hidden" Orientation="Horizontal" Margin="10">
             <Button Content="Wczytaj mapę" Click="WczytajMape_Click" Margin="0,0,10,0"/>
             <Label Name="EtykietaDrewna" Content="Drewno: 0" FontSize="16"/>
             <Image x:Name="obraz" Height="100" Width="100" Source="pack://application:,,,/gracz.png"/>
         </StackPanel>
         <!-- Kontener wyświetlający mapę -->
-        <Grid Name="SiatkaMapy" Grid.Row="1" Background="LightGray"/>
+        <Grid Visibility="Hidden" Name="SiatkaMapy" Grid.Row="1" Background="LightGray">
+        </Grid>
+        <GroupBox x:Name="Panel_Menu"  Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Height="300" Width="200" BorderThickness="1" BorderBrush="Black">
+            <StackPanel Visibility="Visible">
+                <TextBlock Padding="10" TextAlignment="Center" Text="Wybierz mapę:"></TextBlock>
+                <TextBlock Padding="10" TextAlignment="Center" Text="Mapa 5x5"></TextBlock>
+                <Button x:Name="Mapa1" Content="Wybierz" Height="20" Width="100" Click="Rozpocznij_gre_Click"/>
+                <TextBlock Padding="10" TextAlignment="Center" Text="Mapa 6x6"></TextBlock>
+                <Button x:Name="Mapa2" Content="Wybierz" Height="20" Width="100" Click="Rozpocznij_gre2_Click"/>
+                <TextBlock Padding="10" TextAlignment="Center" Text="Mapa 8x8"></TextBlock>
+                <Button x:Name="Mapa3" Content="Wybierz" Height="20" Width="100" Click="Rozpocznij_gre3_Click"/>
+            </StackPanel>
+        </GroupBox>
+
     </Grid>
 </Window>

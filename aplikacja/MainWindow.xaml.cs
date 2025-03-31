@@ -185,5 +185,22 @@ namespace Aplikacja
                 WczytajMape(oknoDialogowe.FileName);
             }
         }
+
+        private void Rozpocznij_gre_Click(object sender, RoutedEventArgs e)
+        {
+            SiatkaMapy.Visibility = Visibility.Visible;
+            Panel_gorny.Visibility = Visibility.Visible;
+            Panel_Menu.Visibility = Visibility.Hidden;
+        }
+
+        private void Rozpocznij_gre2_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Rozpocznij_gre3_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
