@@ -21,11 +21,11 @@
             <StackPanel Visibility="Visible">
                 <TextBlock Padding="10" TextAlignment="Center" Text="Wybierz mapę:"></TextBlock>
                 <TextBlock Padding="10" TextAlignment="Center" Text="Mapa 5x5"></TextBlock>
-                <Button x:Name="Mapa1" Content="Wybierz" Height="20" Width="100" Click="Rozpocznij_gre_Click"/>
+                <Button x:Name="Mapa1" Content="Wybierz" Height="20" Width="100" Click="Mapa1_Click"/>
                 <TextBlock Padding="10" TextAlignment="Center" Text="Mapa 6x6"></TextBlock>
-                <Button x:Name="Mapa2" Content="Wybierz" Height="20" Width="100"/>
+                <Button x:Name="Mapa2" Content="Wybierz" Height="20" Width="100" Click="Mapa2_Click"/>
                 <TextBlock Padding="10" TextAlignment="Center" Text="Mapa 8x8"></TextBlock>
-                <Button x:Name="Mapa3" Content="Wybierz" Height="20" Width="100"/>
+                <Button x:Name="Mapa3" Content="Wybierz" Height="20" Width="100" Click="Mapa3_Click"/>
             </StackPanel>
         </GroupBox>
 
