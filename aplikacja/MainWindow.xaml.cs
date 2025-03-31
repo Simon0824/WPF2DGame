@@ -191,16 +191,89 @@ namespace Aplikacja
             SiatkaMapy.Visibility = Visibility.Visible;
             Panel_gorny.Visibility = Visibility.Visible;
             Panel_Menu.Visibility = Visibility.Hidden;
-        }
+            try
+            {
+                Random rnd = new Random();
+                wysokoscMapy = 5;
+                szerokoscMapy = 5;//zwraca liczbę elementów w tablicy
+                mapa = new int[wysokoscMapy, szerokoscMapy];
+                for (int i = 0; i < mapa.GetLength(0); i++)
+                {
+                    for(int j = 0; j < mapa.GetLength(1); j ++)
+                    {
+                        mapa[i, j] = rnd.Next(1, 4);
+                    }
+                }
 
-        private void Rozpocznij_gre2_Click(object sender, RoutedEventArgs e)
-        {
+                mapa[0, 0] = 1;
+                File.Delete("mapa.txt");
+                StreamWriter writer = new StreamWriter("mapa.txt", true);
+                for(int i = 0;i < mapa.GetLength(0);i++)
+                {
+                    for(int j = 0;j < mapa.GetLength(1);j ++)
+                    {
+                        writer.Write(mapa[i, j] + " ");
+                    }
+                    writer.WriteLine();
+                }
+                writer.Close();
 
-        }
+                // Przygotowanie kontenera SiatkaMapy – czyszczenie elementów i definicji wierszy/kolumn
+                SiatkaMapy.Children.Clear();
+                SiatkaMapy.RowDefinitions.Clear();
+                SiatkaMapy.ColumnDefinitions.Clear();
 
-        private void Rozpocznij_gre3_Click(object sender, RoutedEventArgs e)
-        {
+                for (int y = 0; y < wysokoscMapy; y++)
+                {
+                    SiatkaMapy.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(100) });
+                }
+                for (int x = 0; x < szerokoscMapy; x++)
+                {
+                    SiatkaMapy.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(100) });
+                }
 
+                // Tworzenie tablicy kontrolk Image i dodawanie ich do siatki
+                tablicaTerenu = new Image[wysokoscMapy, szerokoscMapy];
+                for (int y = 0; y < wysokoscMapy; y++)
+                {
+                    for (int x = 0; x < szerokoscMapy; x++)
+                    {
+                        Image obraz = new Image
+                        {
+                            Width = 100,
+                            Height = 100
+                        };
+
+                        int rodzaj = mapa[y, x];
+                        if (rodzaj >= 1 && rodzaj < ILE_TERENOW)
+                        {
+                            obraz.Source = obrazyTerenu[rodzaj];//wczytanie obrazka terenu
+                        }
+                        else
+                        {
+                            obraz.Source = null;
+                        }
+                        Grid.SetRow(obraz, y);
+                        Grid.SetColumn(obraz, x);
+                        SiatkaMapy.Children.Add(obraz);//dodanie obrazka do siatki na ekranie
+                        tablicaTerenu[y, x] = obraz;
+                    }
+                }
+
+                // Dodanie obrazka gracza – ustawiamy go na wierzchu
+                SiatkaMapy.Children.Add(obrazGracza);
+                Panel.SetZIndex(obrazGracza, 1);//ustawienie obrazka gracza na wierzchu
+                pozycjaGraczaX = 0;
+                pozycjaGraczaY = 0;
+                AktualizujPozycjeGracza();
+
+                iloscDrewna = 0;
+                EtykietaDrewna.Content = "Drewno: " + iloscDrewna;
+            }//koniec try
+            catch (Exception ex)
+            {
+                MessageBox.Show("Błąd wczytywania mapy: " + ex.Message);
+            }
         }
     }
 }
