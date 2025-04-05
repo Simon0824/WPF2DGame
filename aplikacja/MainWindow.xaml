@@ -10,14 +10,15 @@
         </Grid.RowDefinitions>
         <!-- Panel sterowania -->
         <StackPanel x:Name="Panel_gorny" Visibility="Hidden" Orientation="Horizontal" Margin="10">
+            <Button x:Name="Btn_Menu" Width="100" Height="50" Foreground="White" Background="Black" Content="Menu" Click="Btn_Menu_Click"/>
             <Label Name="EtykietaDrewna" Content="Drewno: 0" FontSize="16"/>
             <Image x:Name="obraz" Height="100" Width="100" Source="pack://application:,,,/gracz.png"/>
         </StackPanel>
         <!-- Kontener wyświetlający mapę -->
         <Grid Visibility="Hidden" Name="SiatkaMapy" Grid.Row="1" Background="LightGray">
         </Grid>
-        <GroupBox Header="Menu" x:Name="Panel_Menu"  Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Height="300" Width="200" BorderThickness="1" BorderBrush="Black">
-            <StackPanel Visibility="Visible">
+        <GroupBox Visibility="Visible" Header="Menu" x:Name="Panel_Menu"  Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Height="300" Width="200" BorderThickness="1" BorderBrush="Black">
+            <StackPanel>
                 <TextBlock Padding="10" TextAlignment="Center" Text="Wybierz mapę:"></TextBlock>
                 <TextBlock Padding="10" TextAlignment="Center" Text="Mapa 5x5"></TextBlock>
                 <Button Background="Black" Foreground="White" x:Name="Mapa1" Content="Wybierz" Height="20" Width="100" Click="Mapa1_Click" Cursor="Hand"/>
@@ -28,5 +29,25 @@
             </StackPanel>
         </GroupBox>
 
+        <GroupBox Visibility="Hidden" Header="Menu" x:Name="Panel_Wybor"  Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Height="300" Width="200" BorderThickness="1" BorderBrush="Black">
+            <StackPanel>
+                <TextBlock Padding="10" TextAlignment="Center" Text="Wznów grę:"></TextBlock>
+                <Button Background="Black" Foreground="White" x:Name="Wznow" Content="Wznów" Height="20" Width="100" Click="Wznow_Click" Cursor="Hand"/>
+                <TextBlock Padding="10" TextAlignment="Center" Text="Wybierz nową mapę:"></TextBlock>
+                <Button Background="Black" Foreground="White"  x:Name="Wybor_Mapy" Content="Wybierz" Height="20" Width="100" Click="Wybor_Mapy_Click" Cursor="Hand"/>
+            </StackPanel>
+        </GroupBox>
+
+        <GroupBox Visibility="Hidden" Header="Menu" x:Name="Panel_Menu2"  Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Height="300" Width="200" BorderThickness="1" BorderBrush="Black">
+            <StackPanel>
+                <TextBlock Padding="10" TextAlignment="Center" Text="Wybierz mapę:"></TextBlock>
+                <TextBlock Padding="10" TextAlignment="Center" Text="Mapa 5x5"></TextBlock>
+                <Button Background="Black" Foreground="White" x:Name="Panel_Menu2_Mapa1" Content="Wybierz" Height="20" Width="100" Click="Mapa1_Click" Cursor="Hand"/>
+                <TextBlock Padding="10" TextAlignment="Center" Text="Mapa 6x6"></TextBlock>
+                <Button Background="Black" Foreground="White"  x:Name="Panel_Menu2_Mapa2" Content="Wybierz" Height="20" Width="100" Click="Mapa2_Click" Cursor="Hand"/>
+                <TextBlock Padding="10" TextAlignment="Center" Text="Mapa 8x8"></TextBlock>
+                <Button Background="Black" Foreground="White"  x:Name="Panel_Menu2_Mapa3" Content="Wybierz" Height="20" Width="100" Click="Mapa3_Click" Cursor="Hand"/>
+            </StackPanel>
+        </GroupBox>
     </Grid>
 </Window>

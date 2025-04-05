@@ -173,23 +173,12 @@ namespace Aplikacja
             }
         }
 
-        // Obsługa przycisku "Wczytaj mapę"
-        private void WczytajMape_Click(object sender, RoutedEventArgs e)
-        {
-            OpenFileDialog oknoDialogowe = new OpenFileDialog();
-            oknoDialogowe.Filter = "Plik mapy (*.txt)|*.txt";
-            oknoDialogowe.InitialDirectory = AppDomain.CurrentDomain.BaseDirectory; // Ustawienie katalogu początkowego
-            bool? czyOtwartoMape = oknoDialogowe.ShowDialog();
-            if (czyOtwartoMape == true)
-            {
-                WczytajMape(oknoDialogowe.FileName);
-            }
-        }
-
         private void Mapa1_Click(object sender, RoutedEventArgs e)
         {
             SiatkaMapy.Visibility = Visibility.Visible;
             Panel_gorny.Visibility = Visibility.Visible;
+            Panel_Wybor.Visibility = Visibility.Hidden;
+            Panel_Menu2.Visibility = Visibility.Hidden;
             Panel_Menu.Visibility = Visibility.Hidden;
             try
             {
@@ -280,6 +269,8 @@ namespace Aplikacja
         {
             SiatkaMapy.Visibility = Visibility.Visible;
             Panel_gorny.Visibility = Visibility.Visible;
+            Panel_Wybor.Visibility = Visibility.Hidden;
+            Panel_Menu2.Visibility = Visibility.Hidden;
             Panel_Menu.Visibility = Visibility.Hidden;
             try
             {
@@ -370,6 +361,8 @@ namespace Aplikacja
         {
             SiatkaMapy.Visibility = Visibility.Visible;
             Panel_gorny.Visibility = Visibility.Visible;
+            Panel_Wybor.Visibility = Visibility.Hidden;
+            Panel_Menu2.Visibility = Visibility.Hidden;
             Panel_Menu.Visibility = Visibility.Hidden;
             try
             {
@@ -454,6 +447,33 @@ namespace Aplikacja
             {
                 MessageBox.Show("Błąd wczytywania mapy: " + ex.Message);
             }
+        }
+
+        private void Btn_Menu_Click(object sender, RoutedEventArgs e)
+        {
+            SiatkaMapy.Visibility = Visibility.Hidden;
+            Panel_gorny.Visibility = Visibility.Hidden;
+            Panel_Menu.Visibility = Visibility.Hidden;
+            Panel_Menu2.Visibility = Visibility.Hidden;
+            Panel_Wybor.Visibility = Visibility.Visible;
+        }
+
+        private void Wznow_Click(object sender, RoutedEventArgs e)
+        {
+            SiatkaMapy.Visibility = Visibility.Visible;
+            Panel_gorny.Visibility = Visibility.Visible;
+            Panel_Menu.Visibility = Visibility.Hidden;
+            Panel_Menu2.Visibility = Visibility.Hidden;
+            Panel_Wybor.Visibility = Visibility.Hidden;
+        }
+
+        private void Wybor_Mapy_Click(object sender, RoutedEventArgs e)
+        {
+            SiatkaMapy.Visibility = Visibility.Hidden;
+            Panel_gorny.Visibility = Visibility.Hidden;
+            Panel_Menu.Visibility = Visibility.Hidden;
+            Panel_Menu2.Visibility = Visibility.Visible;
+            Panel_Wybor.Visibility = Visibility.Hidden;
         }
     }
 }
