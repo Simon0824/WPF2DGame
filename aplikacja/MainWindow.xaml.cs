@@ -32,6 +32,8 @@ namespace Aplikacja
         private Image obrazGracza;
         // Licznik zgromadzonego drewna
         private int iloscDrewna = 0;
+
+        private int iloscKamienia = 0;
         public MainWindow()
         {
             InitializeComponent();
@@ -152,13 +154,9 @@ namespace Aplikacja
             //Gracz nie może wyjść poza mapę
             if (nowyX >= 0 && nowyX < szerokoscMapy && nowyY >= 0 && nowyY < wysokoscMapy)
             {
-                // Gracz nie może wejść na pole ze skałami
-                if (mapa[nowyY, nowyX] != SKALA)
-                {
                     pozycjaGraczaX = nowyX;
                     pozycjaGraczaY = nowyY;
                     AktualizujPozycjeGracza();
-                }
             }
 
             if (e.Key == Key.B)
@@ -169,6 +167,13 @@ namespace Aplikacja
                     tablicaTerenu[pozycjaGraczaY, pozycjaGraczaX].Source = obrazyTerenu[LAKA];
                     iloscDrewna++;
                     EtykietaDrewna.Content = "Drewno: " + iloscDrewna;
+                }
+                else if (mapa[pozycjaGraczaY, pozycjaGraczaX] == SKALA)//jeśli gracz stoi na polu lasu
+                {
+                    mapa[pozycjaGraczaY, pozycjaGraczaX] = LAKA;
+                    tablicaTerenu[pozycjaGraczaY, pozycjaGraczaX].Source = obrazyTerenu[LAKA];
+                    iloscKamienia++;
+                    EtykietaKamienia.Content = "Kamień: " + iloscKamienia;
                 }
             }
         }

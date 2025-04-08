@@ -11,7 +11,10 @@
         <!-- Panel sterowania -->
         <StackPanel x:Name="Panel_gorny" Visibility="Hidden" Orientation="Horizontal" Margin="10">
             <Button x:Name="Btn_Menu" Width="100" Height="50" Foreground="White" Background="Black" Content="Menu" Click="Btn_Menu_Click"/>
-            <Label Name="EtykietaDrewna" Content="Drewno: 0" FontSize="16"/>
+            <StackPanel>
+                <Label Name="EtykietaDrewna" Content="Drewno: 0" FontSize="16" Height="44"/>
+                <Label x:Name="EtykietaKamienia" Content="Kamień: 0" FontSize="16" Height="32" Padding="8,5,5,5"/>
+            </StackPanel>
             <Image x:Name="obraz" Height="100" Width="100" Source="pack://application:,,,/gracz.png"/>
         </StackPanel>
         <!-- Kontener wyświetlający mapę -->
