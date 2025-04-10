@@ -10,7 +10,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <!-- Panel sterowania -->
-        <StackPanel x:Name="Panel_gorny" Visibility="Hidden" Orientation="Horizontal" Margin="10">
+        <StackPanel x:Name="Panel_gorny" Visibility="Hidden" Orientation="Horizontal" Margin="10" Cursor="">
             <Button x:Name="Btn_Menu" Width="100" Height="50" Foreground="White" Background="Black" Content="Menu" Click="Btn_Menu_Click" Cursor="Hand"/>
             <StackPanel>
                 <Label Name="EtykietaDrewna" Content="Drewno: 0" FontSize="16" Height="44"/>

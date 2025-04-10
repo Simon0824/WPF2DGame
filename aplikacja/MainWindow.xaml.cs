@@ -500,8 +500,8 @@ namespace Aplikacja
             SiatkaMapy.Visibility = Visibility.Hidden;
             Panel_gorny.Visibility = Visibility.Hidden;
             Panel_Menu.Visibility = Visibility.Hidden;
-            Panel_Menu2.Visibility = Visibility.Visible;
-            Panel_Wybor.Visibility = Visibility.Hidden;
+            Panel_Menu2.Visibility = Visibility.Hidden;
+            Panel_Wybor.Visibility = Visibility.Visible;
         }
 
         private void Wznow_Click(object sender, RoutedEventArgs e)
