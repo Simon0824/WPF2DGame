@@ -24,7 +24,9 @@ namespace Aplikacja
         // Tablica obrazków terenu – indeks odpowiada rodzajowi terenu
         // Indeks 1: las, 2: łąka, 3: skały
         private BitmapImage[] obrazyTerenu = new BitmapImage[ILE_TERENOW];
-
+        private int doceloweDrewno = 0;
+        private int docelowyKamien = 0;
+        private bool prawda;
         // Pozycja gracza na mapie
         private int pozycjaGraczaX = 0;
         private int pozycjaGraczaY = 0;
@@ -47,6 +49,7 @@ namespace Aplikacja
             };
             BitmapImage bmpGracza = new BitmapImage(new Uri("gracz.png", UriKind.Relative));
             obrazGracza.Source = bmpGracza;
+
         }
 
         private void WczytajObrazyTerenu()
@@ -175,6 +178,15 @@ namespace Aplikacja
                     iloscKamienia++;
                     EtykietaKamienia.Content = "Kamień: " + iloscKamienia;
                 }
+                if (iloscKamienia == docelowyKamien && iloscDrewna == doceloweDrewno)
+                {
+                    MessageBox.Show("Zebrano wystarczającą ilość!");
+                    SiatkaMapy.Visibility = Visibility.Hidden;
+                    Panel_gorny.Visibility = Visibility.Hidden;
+                    Panel_Wybor.Visibility = Visibility.Hidden;
+                    Panel_Menu2.Visibility = Visibility.Hidden;
+                    Panel_Menu.Visibility = Visibility.Visible;
+                }
             }
         }
 
@@ -263,6 +275,17 @@ namespace Aplikacja
 
                 iloscDrewna = 0;
                 EtykietaDrewna.Content = "Drewno: " + iloscDrewna;
+
+                for (int i = 0; i < wysokoscMapy; i++)
+                {
+                    for (int j = 0; j < szerokoscMapy; j++)
+                    {
+                        if (mapa[i, j] == LAS)
+                            doceloweDrewno++;
+                        else if (mapa[i, j] == SKALA)
+                            docelowyKamien++;
+                    }
+                }
             }//koniec try
             catch (Exception ex)
             {
@@ -352,9 +375,16 @@ namespace Aplikacja
                 pozycjaGraczaX = 0;
                 pozycjaGraczaY = 0;
                 AktualizujPozycjeGracza();
-
-                iloscDrewna = 0;
-                EtykietaDrewna.Content = "Drewno: " + iloscDrewna;
+                for (int i = 0; i < wysokoscMapy; i++)
+                {
+                    for (int j = 0; j < szerokoscMapy; j++)
+                    {
+                        if (mapa[i, j] == LAS)
+                            doceloweDrewno++;
+                        else if (mapa[i, j] == SKALA)
+                            docelowyKamien++;
+                    }
+                }
             }//koniec try
             catch (Exception ex)
             {
@@ -444,9 +474,16 @@ namespace Aplikacja
                 pozycjaGraczaX = 0;
                 pozycjaGraczaY = 0;
                 AktualizujPozycjeGracza();
-
-                iloscDrewna = 0;
-                EtykietaDrewna.Content = "Drewno: " + iloscDrewna;
+                for (int i = 0; i < wysokoscMapy; i++)
+                {
+                    for (int j = 0; j < szerokoscMapy; j++)
+                    {
+                        if (mapa[i, j] == LAS)
+                            doceloweDrewno++;
+                        else if (mapa[i, j] == SKALA)
+                            docelowyKamien++;
+                    }
+                }
             }//koniec try
             catch (Exception ex)
             {
@@ -459,8 +496,8 @@ namespace Aplikacja
             SiatkaMapy.Visibility = Visibility.Hidden;
             Panel_gorny.Visibility = Visibility.Hidden;
             Panel_Menu.Visibility = Visibility.Hidden;
-            Panel_Menu2.Visibility = Visibility.Hidden;
-            Panel_Wybor.Visibility = Visibility.Visible;
+            Panel_Menu2.Visibility = Visibility.Visible;
+            Panel_Wybor.Visibility = Visibility.Hidden;
         }
 
         private void Wznow_Click(object sender, RoutedEventArgs e)
