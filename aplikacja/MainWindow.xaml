@@ -18,7 +18,8 @@
             <Image x:Name="obraz" Height="100" Width="100" Source="pack://application:,,,/gracz.png"/>
         </StackPanel>
         <!-- Kontener wyświetlający mapę -->
-        <Grid Visibility="Hidden" Name="SiatkaMapy" Grid.Row="1" Background="LightGray">
+        <Grid Visibility="Hidden" Name="Siatka" HorizontalAlignment="Stretch" Width="Auto"  Grid.Row="1" Background="LightGray">
+            <Grid Visibility="Hidden" Name="SiatkaMapy" HorizontalAlignment="Center" Width="500" Grid.Row="1" Background="LightGray"/>
         </Grid>
         <GroupBox Visibility="Visible" Header="Menu" x:Name="Panel_Menu"  Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Height="300" Width="200" BorderThickness="1" BorderBrush="Black">
             <StackPanel>

@@ -127,9 +127,8 @@ namespace Aplikacja
                 pozycjaGraczaX = 0;
                 pozycjaGraczaY = 0;
                 AktualizujPozycjeGracza();
-
-                iloscDrewna = 0;
-                EtykietaDrewna.Content = "Drewno: " + iloscDrewna;
+                SiatkaMapy.Width = szerokoscMapy;
+                SiatkaMapy.Height = wysokoscMapy;
             }//koniec try
             catch (Exception ex)
             {
@@ -181,6 +180,7 @@ namespace Aplikacja
                 if (iloscKamienia == docelowyKamien && iloscDrewna == doceloweDrewno)
                 {
                     MessageBox.Show("Zebrano wystarczającą ilość!");
+                    Siatka.Visibility = Visibility.Hidden;
                     SiatkaMapy.Visibility = Visibility.Hidden;
                     Panel_gorny.Visibility = Visibility.Hidden;
                     Panel_Wybor.Visibility = Visibility.Hidden;
@@ -192,6 +192,7 @@ namespace Aplikacja
 
         private void Mapa1_Click(object sender, RoutedEventArgs e)
         {
+            Siatka.Visibility = Visibility.Visible;
             SiatkaMapy.Visibility = Visibility.Visible;
             Panel_gorny.Visibility = Visibility.Visible;
             Panel_Wybor.Visibility = Visibility.Hidden;
@@ -295,6 +296,7 @@ namespace Aplikacja
 
         private void Mapa2_Click(object sender, RoutedEventArgs e)
         {
+            Siatka.Visibility = Visibility.Visible;
             SiatkaMapy.Visibility = Visibility.Visible;
             Panel_gorny.Visibility = Visibility.Visible;
             Panel_Wybor.Visibility = Visibility.Hidden;
@@ -394,6 +396,7 @@ namespace Aplikacja
 
         private void Mapa3_Click(object sender, RoutedEventArgs e)
         {
+            Siatka.Visibility = Visibility.Visible;
             SiatkaMapy.Visibility = Visibility.Visible;
             Panel_gorny.Visibility = Visibility.Visible;
             Panel_Wybor.Visibility = Visibility.Hidden;
@@ -493,6 +496,7 @@ namespace Aplikacja
 
         private void Btn_Menu_Click(object sender, RoutedEventArgs e)
         {
+            Siatka.Visibility = Visibility.Hidden;
             SiatkaMapy.Visibility = Visibility.Hidden;
             Panel_gorny.Visibility = Visibility.Hidden;
             Panel_Menu.Visibility = Visibility.Hidden;
@@ -502,6 +506,7 @@ namespace Aplikacja
 
         private void Wznow_Click(object sender, RoutedEventArgs e)
         {
+            Siatka.Visibility = Visibility.Visible;
             SiatkaMapy.Visibility = Visibility.Visible;
             Panel_gorny.Visibility = Visibility.Visible;
             Panel_Menu.Visibility = Visibility.Hidden;
@@ -511,6 +516,7 @@ namespace Aplikacja
 
         private void Wybor_Mapy_Click(object sender, RoutedEventArgs e)
         {
+            Siatka.Visibility = Visibility.Hidden;
             SiatkaMapy.Visibility = Visibility.Hidden;
             Panel_gorny.Visibility = Visibility.Hidden;
             Panel_Menu.Visibility = Visibility.Hidden;
