@@ -1,0 +1,12 @@
+- poszerzenie mapy
+- wybór rozmiaru mapy (trzy rodzaje)
+- generowanie mapy
+- nowe menu
+- umożliwienie wejścia na pole SKALA
+- zbieranie kamienia
+- dodanie wody(na którą nie można wchodzic)
+- zmiana przycisków poruszania się(ze strzałek na WASD)
+- zmiana przycisku niszczenia(z `C` na `B`)
+- dodanie wejścia do menu, w którym można wznowić grę, wybrać nową mapę lub sprawdzić sterowanie
+- możliwość budowania z drewna lub z kamienia
+- gra się kończy jeśli są zebrane wszystkie surowce
