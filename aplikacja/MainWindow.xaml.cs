@@ -41,9 +41,6 @@ namespace Aplikacja
         private int iloscKamienia = 0;
 
         private Key wybranyKierunek = Key.None;
-
-        bool trybStawiania = false;
-        int coStawiam = -1;
         public MainWindow()
         {
             InitializeComponent();
@@ -299,343 +296,396 @@ namespace Aplikacja
                     MessageBox.Show("Nie masz kamienia!");
                 }
             }
-            
+
         }
 
 
 
 
-                private void Mapa1_Click(object sender, RoutedEventArgs e)
+        private void Mapa1_Click(object sender, RoutedEventArgs e)
+        {
+            Siatka.Visibility = Visibility.Visible;
+            SiatkaMapy.Visibility = Visibility.Visible;
+            Panel_gorny.Visibility = Visibility.Visible;
+            Panel_Wybor.Visibility = Visibility.Hidden;
+            Panel_Menu2.Visibility = Visibility.Hidden;
+            Panel_Menu.Visibility = Visibility.Hidden;
+            try
+            {
+                Random rnd = new Random();
+                wysokoscMapy = 5;
+                szerokoscMapy = 5;//zwraca liczbę elementów w tablicy
+                mapa = new int[wysokoscMapy, szerokoscMapy];
+                for (int i = 0; i < mapa.GetLength(0); i++)
                 {
-                    Siatka.Visibility = Visibility.Visible;
-                    SiatkaMapy.Visibility = Visibility.Visible;
-                    Panel_gorny.Visibility = Visibility.Visible;
-                    Panel_Wybor.Visibility = Visibility.Hidden;
-                    Panel_Menu2.Visibility = Visibility.Hidden;
-                    Panel_Menu.Visibility = Visibility.Hidden;
-                    try
+                    for (int j = 0; j < mapa.GetLength(1); j++)
                     {
-                        Random rnd = new Random();
-                        wysokoscMapy = 5;
-                        szerokoscMapy = 5;//zwraca liczbę elementów w tablicy
-                        mapa = new int[wysokoscMapy, szerokoscMapy];
-                        for (int i = 0; i < mapa.GetLength(0); i++)
-                        {
-                            for (int j = 0; j < mapa.GetLength(1); j++)
-                            {
-                                mapa[i, j] = rnd.Next(1, 5);
-                            }
-                        }
-
-                        mapa[0, 0] = 1;
-                        File.Delete("mapa.txt");
-                        StreamWriter writer = new StreamWriter("mapa.txt", true);
-                        for (int i = 0; i < mapa.GetLength(0); i++)
-                        {
-                            for (int j = 0; j < mapa.GetLength(1); j++)
-                            {
-                                writer.Write(mapa[i, j] + " ");
-                            }
-                            writer.WriteLine();
-                        }
-                        writer.Close();
-
-                        // Przygotowanie kontenera SiatkaMapy – czyszczenie elementów i definicji wierszy/kolumn
-                        SiatkaMapy.Children.Clear();
-                        SiatkaMapy.RowDefinitions.Clear();
-                        SiatkaMapy.ColumnDefinitions.Clear();
-
-                        for (int y = 0; y < wysokoscMapy; y++)
-                        {
-                            SiatkaMapy.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(100) });
-                        }
-                        for (int x = 0; x < szerokoscMapy; x++)
-                        {
-                            SiatkaMapy.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(100) });
-                        }
-
-                        // Tworzenie tablicy kontrolk Image i dodawanie ich do siatki
-                        tablicaTerenu = new Image[wysokoscMapy, szerokoscMapy];
-                        for (int y = 0; y < wysokoscMapy; y++)
-                        {
-                            for (int x = 0; x < szerokoscMapy; x++)
-                            {
-                                Image obraz = new Image
-                                {
-                                    Width = 100,
-                                    Height = 100
-                                };
-
-                                int rodzaj = mapa[y, x];
-                                if (rodzaj >= 1 && rodzaj < ILE_TERENOW)
-                                {
-                                    obraz.Source = obrazyTerenu[rodzaj];//wczytanie obrazka terenu
-                                }
-                                else
-                                {
-                                    obraz.Source = null;
-                                }
-                                Grid.SetRow(obraz, y);
-                                Grid.SetColumn(obraz, x);
-                                SiatkaMapy.Children.Add(obraz);//dodanie obrazka do siatki na ekranie
-                                tablicaTerenu[y, x] = obraz;
-                            }
-                        }
-
-                        // Dodanie obrazka gracza – ustawiamy go na wierzchu
-                        SiatkaMapy.Children.Add(obrazGracza);
-                        Panel.SetZIndex(obrazGracza, 1);//ustawienie obrazka gracza na wierzchu
-                        pozycjaGraczaX = 0;
-                        pozycjaGraczaY = 0;
-                        AktualizujPozycjeGracza();
-                        iloscDrewna = 0;
-                        EtykietaDrewna.Content = "Drewno: " + iloscDrewna;
-
-                        for (int i = 0; i < wysokoscMapy; i++)
-                        {
-                            for (int j = 0; j < szerokoscMapy; j++)
-                            {
-                                if (mapa[i, j] == LAS)
-                                    doceloweDrewno++;
-                                else if (mapa[i, j] == SKALA)
-                                    docelowyKamien++;
-                            }
-                        }
-                    }//koniec try
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Błąd wczytywania mapy: " + ex.Message);
+                        mapa[i, j] = rnd.Next(1, 5);
                     }
                 }
 
-                private void Mapa2_Click(object sender, RoutedEventArgs e)
+                mapa[0, 0] = 1;
+                File.Delete("mapa.txt");
+                StreamWriter writer = new StreamWriter("mapa.txt", true);
+                for (int i = 0; i < mapa.GetLength(0); i++)
                 {
-                    Siatka.Visibility = Visibility.Visible;
-                    SiatkaMapy.Visibility = Visibility.Visible;
-                    Panel_gorny.Visibility = Visibility.Visible;
-                    Panel_Wybor.Visibility = Visibility.Hidden;
-                    Panel_Menu2.Visibility = Visibility.Hidden;
-                    Panel_Menu.Visibility = Visibility.Hidden;
-                    try
+                    for (int j = 0; j < mapa.GetLength(1); j++)
                     {
-                        Random rnd = new Random();
-                        wysokoscMapy = 6;
-                        szerokoscMapy = 6;//zwraca liczbę elementów w tablicy
-                        mapa = new int[wysokoscMapy, szerokoscMapy];
-                        for (int i = 0; i < mapa.GetLength(0); i++)
-                        {
-                            for (int j = 0; j < mapa.GetLength(1); j++)
-                            {
-                                mapa[i, j] = rnd.Next(1, 5);
-                            }
-                        }
+                        writer.Write(mapa[i, j] + " ");
+                    }
+                    writer.WriteLine();
+                }
+                writer.Close();
 
-                        mapa[0, 0] = 1;
-                        File.Delete("mapa2.txt");
-                        StreamWriter writer = new StreamWriter("mapa2.txt", true);
-                        for (int i = 0; i < mapa.GetLength(0); i++)
-                        {
-                            for (int j = 0; j < mapa.GetLength(1); j++)
-                            {
-                                writer.Write(mapa[i, j] + " ");
-                            }
-                            writer.WriteLine();
-                        }
-                        writer.Close();
+                // Przygotowanie kontenera SiatkaMapy – czyszczenie elementów i definicji wierszy/kolumn
+                SiatkaMapy.Children.Clear();
+                SiatkaMapy.RowDefinitions.Clear();
+                SiatkaMapy.ColumnDefinitions.Clear();
 
-                        // Przygotowanie kontenera SiatkaMapy – czyszczenie elementów i definicji wierszy/kolumn
-                        SiatkaMapy.Children.Clear();
-                        SiatkaMapy.RowDefinitions.Clear();
-                        SiatkaMapy.ColumnDefinitions.Clear();
+                for (int y = 0; y < wysokoscMapy; y++)
+                {
+                    SiatkaMapy.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(100) });
+                }
+                for (int x = 0; x < szerokoscMapy; x++)
+                {
+                    SiatkaMapy.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(100) });
+                }
 
-                        for (int y = 0; y < wysokoscMapy; y++)
-                        {
-                            SiatkaMapy.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(100) });
-                        }
-                        for (int x = 0; x < szerokoscMapy; x++)
-                        {
-                            SiatkaMapy.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(100) });
-                        }
-
-                        // Tworzenie tablicy kontrolk Image i dodawanie ich do siatki
-                        tablicaTerenu = new Image[wysokoscMapy, szerokoscMapy];
-                        for (int y = 0; y < wysokoscMapy; y++)
-                        {
-                            for (int x = 0; x < szerokoscMapy; x++)
-                            {
-                                Image obraz = new Image
-                                {
-                                    Width = 100,
-                                    Height = 100
-                                };
-
-                                int rodzaj = mapa[y, x];
-                                if (rodzaj >= 1 && rodzaj < ILE_TERENOW)
-                                {
-                                    obraz.Source = obrazyTerenu[rodzaj];//wczytanie obrazka terenu
-                                }
-                                else
-                                {
-                                    obraz.Source = null;
-                                }
-                                Grid.SetRow(obraz, y);
-                                Grid.SetColumn(obraz, x);
-                                SiatkaMapy.Children.Add(obraz);//dodanie obrazka do siatki na ekranie
-                                tablicaTerenu[y, x] = obraz;
-                            }
-                        }
-
-                        // Dodanie obrazka gracza – ustawiamy go na wierzchu
-                        SiatkaMapy.Children.Add(obrazGracza);
-                        Panel.SetZIndex(obrazGracza, 1);//ustawienie obrazka gracza na wierzchu
-                        pozycjaGraczaX = 0;
-                        pozycjaGraczaY = 0;
-                        AktualizujPozycjeGracza();
-                        for (int i = 0; i < wysokoscMapy; i++)
-                        {
-                            for (int j = 0; j < szerokoscMapy; j++)
-                            {
-                                if (mapa[i, j] == LAS)
-                                    doceloweDrewno++;
-                                else if (mapa[i, j] == SKALA)
-                                    docelowyKamien++;
-                            }
-                        }
-                    }//koniec try
-                    catch (Exception ex)
+                // Tworzenie tablicy kontrolk Image i dodawanie ich do siatki
+                tablicaTerenu = new Image[wysokoscMapy, szerokoscMapy];
+                for (int y = 0; y < wysokoscMapy; y++)
+                {
+                    for (int x = 0; x < szerokoscMapy; x++)
                     {
-                        MessageBox.Show("Błąd wczytywania mapy: " + ex.Message);
+                        Image obraz = new Image
+                        {
+                            Width = 100,
+                            Height = 100
+                        };
+
+                        int rodzaj = mapa[y, x];
+                        if (rodzaj >= 1 && rodzaj < ILE_TERENOW)
+                        {
+                            obraz.Source = obrazyTerenu[rodzaj];//wczytanie obrazka terenu
+                        }
+                        else
+                        {
+                            obraz.Source = null;
+                        }
+                        Grid.SetRow(obraz, y);
+                        Grid.SetColumn(obraz, x);
+                        SiatkaMapy.Children.Add(obraz);//dodanie obrazka do siatki na ekranie
+                        tablicaTerenu[y, x] = obraz;
                     }
                 }
 
-                private void Mapa3_Click(object sender, RoutedEventArgs e)
+                // Dodanie obrazka gracza – ustawiamy go na wierzchu
+                SiatkaMapy.Children.Add(obrazGracza);
+                Panel.SetZIndex(obrazGracza, 1);//ustawienie obrazka gracza na wierzchu
+                pozycjaGraczaX = 0;
+                pozycjaGraczaY = 0;
+                AktualizujPozycjeGracza();
+                iloscDrewna = 0;
+                iloscKamienia = 0;
+                doceloweDrewno = 0;
+                docelowyKamien = 0;
+                EtykietaDrewna.Content = "Drewno: " + iloscDrewna;
+                EtykietaKamienia.Content = "Kamień: " + iloscKamienia;
+
+                for (int i = 0; i < wysokoscMapy; i++)
                 {
-                    Siatka.Visibility = Visibility.Visible;
-                    SiatkaMapy.Visibility = Visibility.Visible;
-                    Panel_gorny.Visibility = Visibility.Visible;
-                    Panel_Wybor.Visibility = Visibility.Hidden;
-                    Panel_Menu2.Visibility = Visibility.Hidden;
-                    Panel_Menu.Visibility = Visibility.Hidden;
-                    try
+                    for (int j = 0; j < szerokoscMapy; j++)
                     {
-                        Random rnd = new Random();
-                        wysokoscMapy = 8;
-                        szerokoscMapy = 8;//zwraca liczbę elementów w tablicy
-                        mapa = new int[wysokoscMapy, szerokoscMapy];
-                        for (int i = 0; i < mapa.GetLength(0); i++)
-                        {
-                            for (int j = 0; j < mapa.GetLength(1); j++)
-                            {
-                                mapa[i, j] = rnd.Next(1, 5);
-                            }
-                        }
-
-                        mapa[0, 0] = 1;
-                        File.Delete("mapa3.txt");
-                        StreamWriter writer = new StreamWriter("mapa3.txt", true);
-                        for (int i = 0; i < mapa.GetLength(0); i++)
-                        {
-                            for (int j = 0; j < mapa.GetLength(1); j++)
-                            {
-                                writer.Write(mapa[i, j] + " ");
-                            }
-                            writer.WriteLine();
-                        }
-                        writer.Close();
-
-                        // Przygotowanie kontenera SiatkaMapy – czyszczenie elementów i definicji wierszy/kolumn
-                        SiatkaMapy.Children.Clear();
-                        SiatkaMapy.RowDefinitions.Clear();
-                        SiatkaMapy.ColumnDefinitions.Clear();
-
-                        for (int y = 0; y < wysokoscMapy; y++)
-                        {
-                            SiatkaMapy.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(100) });
-                        }
-                        for (int x = 0; x < szerokoscMapy; x++)
-                        {
-                            SiatkaMapy.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(100) });
-                        }
-
-                        // Tworzenie tablicy kontrolk Image i dodawanie ich do siatki
-                        tablicaTerenu = new Image[wysokoscMapy, szerokoscMapy];
-                        for (int y = 0; y < wysokoscMapy; y++)
-                        {
-                            for (int x = 0; x < szerokoscMapy; x++)
-                            {
-                                Image obraz = new Image
-                                {
-                                    Width = 100,
-                                    Height = 100
-                                };
-
-                                int rodzaj = mapa[y, x];
-                                if (rodzaj >= 1 && rodzaj < ILE_TERENOW)
-                                {
-                                    obraz.Source = obrazyTerenu[rodzaj];//wczytanie obrazka terenu
-                                }
-                                else
-                                {
-                                    obraz.Source = null;
-                                }
-                                Grid.SetRow(obraz, y);
-                                Grid.SetColumn(obraz, x);
-                                SiatkaMapy.Children.Add(obraz);//dodanie obrazka do siatki na ekranie
-                                tablicaTerenu[y, x] = obraz;
-                            }
-                        }
-
-                        // Dodanie obrazka gracza – ustawiamy go na wierzchu
-                        SiatkaMapy.Children.Add(obrazGracza);
-                        Panel.SetZIndex(obrazGracza, 1);//ustawienie obrazka gracza na wierzchu
-                        pozycjaGraczaX = 0;
-                        pozycjaGraczaY = 0;
-                        AktualizujPozycjeGracza();
-                        for (int i = 0; i < wysokoscMapy; i++)
-                        {
-                            for (int j = 0; j < szerokoscMapy; j++)
-                            {
-                                if (mapa[i, j] == LAS)
-                                    doceloweDrewno++;
-                                else if (mapa[i, j] == SKALA)
-                                    docelowyKamien++;
-                            }
-                        }
-                    }//koniec try
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Błąd wczytywania mapy: " + ex.Message);
+                        if (mapa[i, j] == LAS)
+                            doceloweDrewno++;
+                        else if (mapa[i, j] == SKALA)
+                            docelowyKamien++;
                     }
                 }
-
-                private void Btn_Menu_Click(object sender, RoutedEventArgs e)
-                {
-                    Siatka.Visibility = Visibility.Hidden;
-                    SiatkaMapy.Visibility = Visibility.Hidden;
-                    Panel_gorny.Visibility = Visibility.Hidden;
-                    Panel_Menu.Visibility = Visibility.Hidden;
-                    Panel_Menu2.Visibility = Visibility.Hidden;
-                    Panel_Wybor.Visibility = Visibility.Visible;
-                }
-
-                private void Wznow_Click(object sender, RoutedEventArgs e)
-                {
-                    Siatka.Visibility = Visibility.Visible;
-                    SiatkaMapy.Visibility = Visibility.Visible;
-                    Panel_gorny.Visibility = Visibility.Visible;
-                    Panel_Menu.Visibility = Visibility.Hidden;
-                    Panel_Menu2.Visibility = Visibility.Hidden;
-                    Panel_Wybor.Visibility = Visibility.Hidden;
-                }
-
-                private void Wybor_Mapy_Click(object sender, RoutedEventArgs e)
-                {
-                    Siatka.Visibility = Visibility.Hidden;
-                    SiatkaMapy.Visibility = Visibility.Hidden;
-                    Panel_gorny.Visibility = Visibility.Hidden;
-                    Panel_Menu.Visibility = Visibility.Hidden;
-                    Panel_Menu2.Visibility = Visibility.Visible;
-                    Panel_Wybor.Visibility = Visibility.Hidden;
-                }
+            }//koniec try
+            catch (Exception ex)
+            {
+                MessageBox.Show("Błąd wczytywania mapy: " + ex.Message);
             }
         }
+
+        private void Mapa2_Click(object sender, RoutedEventArgs e)
+        {
+            Siatka.Visibility = Visibility.Visible;
+            SiatkaMapy.Visibility = Visibility.Visible;
+            Panel_gorny.Visibility = Visibility.Visible;
+            Panel_Wybor.Visibility = Visibility.Hidden;
+            Panel_Menu2.Visibility = Visibility.Hidden;
+            Panel_Menu.Visibility = Visibility.Hidden;
+            try
+            {
+                Random rnd = new Random();
+                wysokoscMapy = 6;
+                szerokoscMapy = 6;//zwraca liczbę elementów w tablicy
+                mapa = new int[wysokoscMapy, szerokoscMapy];
+                for (int i = 0; i < mapa.GetLength(0); i++)
+                {
+                    for (int j = 0; j < mapa.GetLength(1); j++)
+                    {
+                        mapa[i, j] = rnd.Next(1, 5);
+                    }
+                }
+
+                mapa[0, 0] = 1;
+                File.Delete("mapa2.txt");
+                StreamWriter writer = new StreamWriter("mapa2.txt", true);
+                for (int i = 0; i < mapa.GetLength(0); i++)
+                {
+                    for (int j = 0; j < mapa.GetLength(1); j++)
+                    {
+                        writer.Write(mapa[i, j] + " ");
+                    }
+                    writer.WriteLine();
+                }
+                writer.Close();
+
+                // Przygotowanie kontenera SiatkaMapy – czyszczenie elementów i definicji wierszy/kolumn
+                SiatkaMapy.Children.Clear();
+                SiatkaMapy.RowDefinitions.Clear();
+                SiatkaMapy.ColumnDefinitions.Clear();
+
+                for (int y = 0; y < wysokoscMapy; y++)
+                {
+                    SiatkaMapy.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(100) });
+                }
+                for (int x = 0; x < szerokoscMapy; x++)
+                {
+                    SiatkaMapy.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(100) });
+                }
+
+                // Tworzenie tablicy kontrolk Image i dodawanie ich do siatki
+                tablicaTerenu = new Image[wysokoscMapy, szerokoscMapy];
+                for (int y = 0; y < wysokoscMapy; y++)
+                {
+                    for (int x = 0; x < szerokoscMapy; x++)
+                    {
+                        Image obraz = new Image
+                        {
+                            Width = 100,
+                            Height = 100
+                        };
+
+                        int rodzaj = mapa[y, x];
+                        if (rodzaj >= 1 && rodzaj < ILE_TERENOW)
+                        {
+                            obraz.Source = obrazyTerenu[rodzaj];//wczytanie obrazka terenu
+                        }
+                        else
+                        {
+                            obraz.Source = null;
+                        }
+                        Grid.SetRow(obraz, y);
+                        Grid.SetColumn(obraz, x);
+                        SiatkaMapy.Children.Add(obraz);//dodanie obrazka do siatki na ekranie
+                        tablicaTerenu[y, x] = obraz;
+                    }
+                }
+
+                // Dodanie obrazka gracza – ustawiamy go na wierzchu
+                SiatkaMapy.Children.Add(obrazGracza);
+                Panel.SetZIndex(obrazGracza, 1);//ustawienie obrazka gracza na wierzchu
+                pozycjaGraczaX = 0;
+                pozycjaGraczaY = 0;
+                AktualizujPozycjeGracza();
+                iloscDrewna = 0;
+                iloscKamienia = 0;
+                doceloweDrewno = 0;
+                docelowyKamien = 0;
+                EtykietaDrewna.Content = "Drewno: " + iloscDrewna;
+                EtykietaKamienia.Content = "Kamień: " + iloscKamienia;
+
+                for (int i = 0; i < wysokoscMapy; i++)
+                {
+                    for (int j = 0; j < szerokoscMapy; j++)
+                    {
+                        if (mapa[i, j] == LAS)
+                            doceloweDrewno++;
+                        else if (mapa[i, j] == SKALA)
+                            docelowyKamien++;
+                    }
+                }
+            }//koniec try
+            catch (Exception ex)
+            {
+                MessageBox.Show("Błąd wczytywania mapy: " + ex.Message);
+            }
+        }
+
+        private void Mapa3_Click(object sender, RoutedEventArgs e)
+        {
+            Siatka.Visibility = Visibility.Visible;
+            SiatkaMapy.Visibility = Visibility.Visible;
+            Panel_gorny.Visibility = Visibility.Visible;
+            Panel_Wybor.Visibility = Visibility.Hidden;
+            Panel_Menu2.Visibility = Visibility.Hidden;
+            Panel_Menu.Visibility = Visibility.Hidden;
+            try
+            {
+                Random rnd = new Random();
+                wysokoscMapy = 8;
+                szerokoscMapy = 8;//zwraca liczbę elementów w tablicy
+                mapa = new int[wysokoscMapy, szerokoscMapy];
+                for (int i = 0; i < mapa.GetLength(0); i++)
+                {
+                    for (int j = 0; j < mapa.GetLength(1); j++)
+                    {
+                        mapa[i, j] = rnd.Next(1, 5);
+                    }
+                }
+
+                mapa[0, 0] = 1;
+                File.Delete("mapa3.txt");
+                StreamWriter writer = new StreamWriter("mapa3.txt", true);
+                for (int i = 0; i < mapa.GetLength(0); i++)
+                {
+                    for (int j = 0; j < mapa.GetLength(1); j++)
+                    {
+                        writer.Write(mapa[i, j] + " ");
+                    }
+                    writer.WriteLine();
+                }
+                writer.Close();
+
+                // Przygotowanie kontenera SiatkaMapy – czyszczenie elementów i definicji wierszy/kolumn
+                SiatkaMapy.Children.Clear();
+                SiatkaMapy.RowDefinitions.Clear();
+                SiatkaMapy.ColumnDefinitions.Clear();
+
+                for (int y = 0; y < wysokoscMapy; y++)
+                {
+                    SiatkaMapy.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(100) });
+                }
+                for (int x = 0; x < szerokoscMapy; x++)
+                {
+                    SiatkaMapy.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(100) });
+                }
+
+                // Tworzenie tablicy kontrolk Image i dodawanie ich do siatki
+                tablicaTerenu = new Image[wysokoscMapy, szerokoscMapy];
+                for (int y = 0; y < wysokoscMapy; y++)
+                {
+                    for (int x = 0; x < szerokoscMapy; x++)
+                    {
+                        Image obraz = new Image
+                        {
+                            Width = 100,
+                            Height = 100
+                        };
+
+                        int rodzaj = mapa[y, x];
+                        if (rodzaj >= 1 && rodzaj < ILE_TERENOW)
+                        {
+                            obraz.Source = obrazyTerenu[rodzaj];//wczytanie obrazka terenu
+                        }
+                        else
+                        {
+                            obraz.Source = null;
+                        }
+                        Grid.SetRow(obraz, y);
+                        Grid.SetColumn(obraz, x);
+                        SiatkaMapy.Children.Add(obraz);//dodanie obrazka do siatki na ekranie
+                        tablicaTerenu[y, x] = obraz;
+                    }
+                }
+
+                // Dodanie obrazka gracza – ustawiamy go na wierzchu
+                SiatkaMapy.Children.Add(obrazGracza);
+                Panel.SetZIndex(obrazGracza, 1);//ustawienie obrazka gracza na wierzchu
+                pozycjaGraczaX = 0;
+                pozycjaGraczaY = 0;
+                AktualizujPozycjeGracza();
+                iloscDrewna = 0;
+                iloscKamienia = 0;
+                doceloweDrewno = 0;
+                docelowyKamien = 0;
+                EtykietaDrewna.Content = "Drewno: " + iloscDrewna;
+                EtykietaKamienia.Content = "Kamień: " + iloscKamienia;
+
+                for (int i = 0; i < wysokoscMapy; i++)
+                {
+                    for (int j = 0; j < szerokoscMapy; j++)
+                    {
+                        if (mapa[i, j] == LAS)
+                            doceloweDrewno++;
+                        else if (mapa[i, j] == SKALA)
+                            docelowyKamien++;
+                    }
+                }
+            }//koniec try
+            catch (Exception ex)
+            {
+                MessageBox.Show("Błąd wczytywania mapy: " + ex.Message);
+            }
+        }
+
+        private void Btn_Menu_Click(object sender, RoutedEventArgs e)
+        {
+            Siatka.Visibility = Visibility.Hidden;
+            SiatkaMapy.Visibility = Visibility.Hidden;
+            Panel_gorny.Visibility = Visibility.Hidden;
+            Panel_Menu.Visibility = Visibility.Hidden;
+            Panel_Menu2.Visibility = Visibility.Hidden;
+            Panel_Wybor.Visibility = Visibility.Visible;
+            Panel_Sterowanie.Visibility = Visibility.Hidden;
+        }
+
+        private void Wznow_Click(object sender, RoutedEventArgs e)
+        {
+            Siatka.Visibility = Visibility.Visible;
+            SiatkaMapy.Visibility = Visibility.Visible;
+            Panel_gorny.Visibility = Visibility.Visible;
+            Panel_Menu.Visibility = Visibility.Hidden;
+            Panel_Menu2.Visibility = Visibility.Hidden;
+            Panel_Wybor.Visibility = Visibility.Hidden;
+            Panel_Sterowanie.Visibility = Visibility.Hidden;
+        }
+
+        private void Wybor_Mapy_Click(object sender, RoutedEventArgs e)
+        {
+            Siatka.Visibility = Visibility.Hidden;
+            SiatkaMapy.Visibility = Visibility.Hidden;
+            Panel_gorny.Visibility = Visibility.Hidden;
+            Panel_Menu.Visibility = Visibility.Hidden;
+            Panel_Menu2.Visibility = Visibility.Visible;
+            Panel_Wybor.Visibility = Visibility.Hidden;
+            Panel_Sterowanie.Visibility = Visibility.Hidden;
+        }
+
+        private void Poruszanie_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Aby się poruszać, posługuj się klawiszami WASD");
+        }
+
+        private void Stawianie_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Klawisz `B`, aby zniszczyć drzewo/skałę. Użyj strzałek, aby wybrać kierunek. Klawiszem `P` postaw drewno a klawiszem `K` kamień");
+        }
+
+        private void Sterowanie_Click(object sender, RoutedEventArgs e)
+        {
+            Siatka.Visibility = Visibility.Hidden;
+            SiatkaMapy.Visibility = Visibility.Hidden;
+            Panel_gorny.Visibility = Visibility.Hidden;
+            Panel_Menu.Visibility = Visibility.Hidden;
+            Panel_Menu2.Visibility = Visibility.Hidden;
+            Panel_Wybor.Visibility = Visibility.Hidden;
+            Panel_Sterowanie.Visibility = Visibility.Visible;
+        }
+
+        private void Powracanie_Click(object sender, RoutedEventArgs e)
+        {
+            Siatka.Visibility = Visibility.Hidden;
+            SiatkaMapy.Visibility = Visibility.Hidden;
+            Panel_gorny.Visibility = Visibility.Hidden;
+            Panel_Menu.Visibility = Visibility.Hidden;
+            Panel_Menu2.Visibility = Visibility.Hidden;
+            Panel_Wybor.Visibility = Visibility.Visible;
+            Panel_Sterowanie.Visibility = Visibility.Hidden;
+        }
+    }
+}

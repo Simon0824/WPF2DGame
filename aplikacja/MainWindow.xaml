@@ -40,6 +40,8 @@
                 <Button Background="Black" Foreground="White" x:Name="Wznow" Content="Wznów" Height="20" Width="100" Click="Wznow_Click" Cursor="Hand"/>
                 <TextBlock Padding="10" TextAlignment="Center" Text="Wybierz nową mapę:"></TextBlock>
                 <Button Background="Black" Foreground="White"  x:Name="Wybor_Mapy" Content="Wybierz" Height="20" Width="100" Click="Wybor_Mapy_Click" Cursor="Hand"/>
+                <TextBlock Padding="10" TextAlignment="Center" Text="Sprawdź sterowanie"></TextBlock>
+                <Button Background="Black" Foreground="White"  x:Name="Sterowanie" Content="Sterowanie" Height="20" Width="100" Click="Sterowanie_Click" Cursor="Hand"/>
             </StackPanel>
         </GroupBox>
 
@@ -52,6 +54,14 @@
                 <Button Background="Black" Foreground="White"  x:Name="Panel_Menu2_Mapa2" Content="Wybierz" Height="20" Width="100" Click="Mapa2_Click" Cursor="Hand"/>
                 <TextBlock Padding="10" TextAlignment="Center" Text="Mapa 8x8"></TextBlock>
                 <Button Background="Black" Foreground="White"  x:Name="Panel_Menu2_Mapa3" Content="Wybierz" Height="20" Width="100" Click="Mapa3_Click" Cursor="Hand"/>
+            </StackPanel>
+        </GroupBox>
+
+        <GroupBox Visibility="Hidden" Header="Menu" x:Name="Panel_Sterowanie"  Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Height="300" Width="200" BorderThickness="1" BorderBrush="Black">
+            <StackPanel>
+                <Button Background="Black" Foreground="White" Margin="20"  x:Name="Poruszanie" Content="Poruszanie" Height="20" Width="100" Click="Poruszanie_Click" Cursor="Hand"/>
+                <Button Background="Black" Foreground="White" Margin="20"  x:Name="Stawianie" Content="Stawianie i niszczenie" Height="20" Width="125" Click="Stawianie_Click" Cursor="Hand"/>
+                <Button Background="Black" Foreground="White" Margin="20"  x:Name="Powracanie" Content="Powrót" Height="20" Width="125" Cursor="Hand" Click="Powracanie_Click"/>
             </StackPanel>
         </GroupBox>
     </Grid>
