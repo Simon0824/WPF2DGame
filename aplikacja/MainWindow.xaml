@@ -11,7 +11,7 @@
         </Grid.RowDefinitions>
         <!-- Panel sterowania -->
         <StackPanel x:Name="Panel_gorny" Visibility="Hidden" Orientation="Horizontal" Margin="10" Cursor="">
-            <Button x:Name="Btn_Menu" Width="100" Height="50" Foreground="White" Background="Black" Content="Menu" Click="Btn_Menu_Click" Cursor="Hand"/>
+            <Button x:Name="Btn_Menu" Width="100" Height="50" Foreground="White" Background="Black" Content="Menu" Click="Btn_Menu_Click" Cursor="Hand" FontWeight="Bold"/>
             <StackPanel>
                 <Label Name="EtykietaDrewna" Content="Drewno: 0" FontSize="16" Height="44"/>
                 <Label x:Name="EtykietaKamienia" Content="Kamień: 0" FontSize="16" Height="32" Padding="8,5,5,5"/>
@@ -24,28 +24,28 @@
         </Grid>
         <GroupBox Visibility="Visible" Header="Menu" x:Name="Panel_Menu"  Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Height="300" Width="200" BorderThickness="1" BorderBrush="Black">
             <StackPanel>
-                <TextBlock Padding="10" TextAlignment="Center" Text="Wybierz mapę:"></TextBlock>
+                <TextBlock Padding="10" TextAlignment="Center" Text="Wybierz mapę:" FontWeight="Bold"></TextBlock>
                 <TextBlock Padding="10" TextAlignment="Center" Text="Mapa 5x5"></TextBlock>
-                <Button Background="Black" Foreground="White" x:Name="Mapa1" Content="Wybierz" Height="20" Width="100" Click="Mapa1_Click" Cursor="Hand"/>
+                <Button Background="Black" Foreground="White" x:Name="Mapa1" Content="Wybierz" Height="20" Width="100" Click="Mapa1_Click" Cursor="Hand" FontWeight="Bold"/>
                 <TextBlock Padding="10" TextAlignment="Center" Text="Mapa 6x6"></TextBlock>
-                <Button Background="Black" Foreground="White"  x:Name="Mapa2" Content="Wybierz" Height="20" Width="100" Click="Mapa2_Click" Cursor="Hand"/>
+                <Button Background="Black" Foreground="White"  x:Name="Mapa2" Content="Wybierz" Height="20" Width="100" Click="Mapa2_Click" Cursor="Hand" FontWeight="Bold"/>
                 <TextBlock Padding="10" TextAlignment="Center" Text="Mapa 8x8"></TextBlock>
-                <Button Background="Black" Foreground="White"  x:Name="Mapa3" Content="Wybierz" Height="20" Width="100" Click="Mapa3_Click" Cursor="Hand"/>
+                <Button Background="Black" Foreground="White"  x:Name="Mapa3" Content="Wybierz" Height="20" Width="100" Click="Mapa3_Click" Cursor="Hand" FontWeight="Bold"/>
             </StackPanel>
         </GroupBox>
 
         <GroupBox Visibility="Hidden" Header="Menu" x:Name="Panel_Wybor"  Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Height="300" Width="200" BorderThickness="1" BorderBrush="Black">
             <StackPanel>
-                <TextBlock Padding="10" TextAlignment="Center" Text="Wznów grę:"></TextBlock>
-                <Button Background="Black" Foreground="White" x:Name="Wznow" Content="Wznów" Height="20" Width="100" Click="Wznow_Click" Cursor="Hand"/>
-                <TextBlock Padding="10" TextAlignment="Center" Text="Wybierz nową mapę:"></TextBlock>
-                <Button Background="Black" Foreground="White"  x:Name="Wybor_Mapy" Content="Wybierz" Height="20" Width="100" Click="Wybor_Mapy_Click" Cursor="Hand"/>
-                <TextBlock Padding="10" TextAlignment="Center" Text="Sprawdź sterowanie"></TextBlock>
-                <Button Background="Black" Foreground="White"  x:Name="Sterowanie" Content="Sterowanie" Height="20" Width="100" Click="Sterowanie_Click" Cursor="Hand"/>
+                <TextBlock Padding="10" TextAlignment="Center" Text="Wznów grę:" FontWeight="Bold"></TextBlock>
+                <Button Background="Black" Foreground="White" x:Name="Wznow" Content="Wznów" Height="20" Width="100" Click="Wznow_Click" Cursor="Hand" FontWeight="Bold"/>
+                <TextBlock Padding="10" TextAlignment="Center" Text="Wybierz nową mapę:" FontWeight="Bold"></TextBlock>
+                <Button Background="Black" Foreground="White"  x:Name="Wybor_Mapy" Content="Wybierz" Height="20" Width="100" Click="Wybor_Mapy_Click" Cursor="Hand" FontWeight="Bold"/>
+                <TextBlock Padding="10" TextAlignment="Center" Text="Sprawdź sterowanie" FontWeight="Bold"></TextBlock>
+                <Button Background="Black" Foreground="White"  x:Name="Sterowanie" Content="Sterowanie" Height="20" Width="100" Click="Sterowanie_Click" Cursor="Hand" FontWeight="Bold"/>
             </StackPanel>
         </GroupBox>
 
-        <GroupBox Visibility="Hidden" Header="Menu" x:Name="Panel_Menu2"  Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Height="300" Width="200" BorderThickness="1" BorderBrush="Black">
+        <GroupBox Visibility="Hidden" Header="Menu" x:Name="Panel_Menu2"  Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Height="300" Width="200" BorderThickness="1" BorderBrush="Black" Cursor="">
             <StackPanel>
                 <TextBlock Padding="10" TextAlignment="Center" Text="Wybierz mapę:"></TextBlock>
                 <TextBlock Padding="10" TextAlignment="Center" Text="Mapa 5x5"></TextBlock>
@@ -59,9 +59,9 @@
 
         <GroupBox Visibility="Hidden" Header="Menu" x:Name="Panel_Sterowanie"  Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Height="300" Width="200" BorderThickness="1" BorderBrush="Black">
             <StackPanel>
-                <Button Background="Black" Foreground="White" Margin="20"  x:Name="Poruszanie" Content="Poruszanie" Height="20" Width="100" Click="Poruszanie_Click" Cursor="Hand"/>
-                <Button Background="Black" Foreground="White" Margin="20"  x:Name="Stawianie" Content="Stawianie i niszczenie" Height="20" Width="125" Click="Stawianie_Click" Cursor="Hand"/>
-                <Button Background="Black" Foreground="White" Margin="20"  x:Name="Powracanie" Content="Powrót" Height="20" Width="125" Cursor="Hand" Click="Powracanie_Click"/>
+                <Button Background="Black" Foreground="White" Margin="20"  x:Name="Poruszanie" Content="Poruszanie" Height="20" Width="100" Click="Poruszanie_Click" Cursor="Hand" FontWeight="Bold"/>
+                <Button Background="Black" Foreground="White" Margin="20"  x:Name="Stawianie" Content="Stawianie i niszczenie" Height="20" Width="125" Click="Stawianie_Click" Cursor="Hand" FontWeight="Bold"/>
+                <Button Background="Black" Foreground="White" Margin="20"  x:Name="Powracanie" Content="Powrót" Height="20" Width="125" Cursor="Hand" Click="Powracanie_Click" FontWeight="Bold"/>
             </StackPanel>
         </GroupBox>
     </Grid>
