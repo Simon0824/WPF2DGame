@@ -1,6 +1,7 @@
 - poszerzenie mapy
 - wybór rozmiaru mapy (trzy rodzaje)
 - generowanie mapy
+- wyśrodkowanie mapy
 - nowe menu
 - umożliwienie wejścia na pole SKALA
 - zbieranie kamienia
