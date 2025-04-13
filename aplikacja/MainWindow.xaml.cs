@@ -141,8 +141,8 @@ namespace Aplikacja
                             MessageBox.Show("Nie mozesz stawiać na skale lub na drzewie!");
                         }
                         else
-                        { 
-                            //jeśli kliknięty został P to kamień zostanie postawiony na wskazanym przez strzałkę polu
+                        {
+                            mapa[nowyY, nowyX] = POSTAWIONE_DREWNO;//jeśli kliknięty został P to kamień zostanie postawiony na wskazanym przez strzałkę polu
                             tablicaTerenu[nowyY, nowyX].Source = obrazyTerenu[POSTAWIONE_DREWNO]; //zmiana obrazu
                             iloscDrewna--;
                             doceloweDrewno--;
@@ -190,6 +190,7 @@ namespace Aplikacja
                         }
                         else
                         {
+                            mapa[nowyY, nowyX] = POSTAWIONY_KAMIEN;
                             tablicaTerenu[nowyY, nowyX].Source = obrazyTerenu[POSTAWIONY_KAMIEN];
                             iloscKamienia--;
                             docelowyKamien--;
