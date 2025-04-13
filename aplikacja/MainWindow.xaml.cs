@@ -282,7 +282,7 @@ namespace Aplikacja
                         {
                             obraz.Source = null;
                         }
-                        Grid.SetRow(obraz, y);
+                        Grid.SetRow(obraz, y);//
                         Grid.SetColumn(obraz, x);
                         SiatkaMapy.Children.Add(obraz);
                         tablicaTerenu[y, x] = obraz;
