@@ -9,23 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="gracz.png" />
-    <None Remove="laka.png" />
-    <None Remove="las.png" />
-    <None Remove="postawione_drewno.png" />
-    <None Remove="postawiony_kamien.png" />
-    <None Remove="skala.png" />
-    <None Remove="woda.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="gracz.png" />
-    <Resource Include="laka.png" />
-    <Resource Include="las.png" />
-    <Resource Include="postawione_drewno.png" />
-    <Resource Include="postawiony_kamien.png" />
-    <Resource Include="skala.png" />
-    <Resource Include="woda.png" />
+    <Resource Include="player.png" />
+    <Resource Include="grass.png" />
+    <Resource Include="forest.png" />
+    <Resource Include="wood_set.png" />
+    <Resource Include="stone_set.png" />
+    <Resource Include="stone.png" />
+    <Resource Include="water.png" />
   </ItemGroup>
 
 </Project>
