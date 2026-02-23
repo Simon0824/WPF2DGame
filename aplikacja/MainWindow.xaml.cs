@@ -90,18 +90,18 @@ namespace App
                     map[playerYposition, playerXposition] = GRASS;
                     MapImage[playerYposition, playerXposition].Source = terrainImage[GRASS];
                     woodAmount++;
-                    WoodLabel.Content = "Drewno: " + woodAmount;
+                    WoodLabel.Content = "Wood: " + woodAmount;
                 }
                 else if (map[playerYposition, playerXposition] == STONE)
                 {
                     map[playerYposition, playerXposition] = GRASS;
                     MapImage[playerYposition, playerXposition].Source = terrainImage[GRASS];
                     stoneAmount++;
-                    StoneLabel.Content = "Kamień: " + stoneAmount;
+                    StoneLabel.Content = "Stone: " + stoneAmount;
                 }
                 if (stoneAmount == maxStone && woodAmount == maxWood)
                 {
-                    MessageBox.Show("Zebrano wystarczającą ilość!");
+                    MessageBox.Show("You have max amount of wood and stone!");
                     Grid.Visibility = Visibility.Hidden;
                     MapGrid.Visibility = Visibility.Hidden;
                     Top_Panel.Visibility = Visibility.Hidden;
@@ -135,7 +135,7 @@ namespace App
                     {
                         if (map[newY, newX] == FOREST || map[newY, newX] == STONE)
                         {
-                            MessageBox.Show("Nie mozesz stawiać na skale lub na drzewie!");
+                            MessageBox.Show("You can't set something on forest or stone!");
                         }
                         else
                         {
@@ -143,17 +143,17 @@ namespace App
                             MapImage[newY, newX].Source = terrainImage[SET_WOOD];
                             woodAmount--;
                             maxWood--;
-                            WoodLabel.Content = "Drewno: " + woodAmount;
+                            WoodLabel.Content = "Wood: " + woodAmount;
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Nie możesz budować poza mapę!");
+                        MessageBox.Show("You can't set anything outside the map!");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Nie masz drewna!");
+                    MessageBox.Show("You don't have wood!");
                 }
             }
 
@@ -183,7 +183,7 @@ namespace App
                     {
                         if (map[newY, newX] == FOREST || map[newY, newX] == STONE)
                         {
-                            MessageBox.Show("Nie mozesz stawiać na skale lub na drzewie!");
+                            MessageBox.Show("You can't set something on forest or stone!");
                         }
                         else
                         {
@@ -191,17 +191,17 @@ namespace App
                             MapImage[newY, newX].Source = terrainImage[SET_STONE];
                             stoneAmount--;
                             maxStone--;
-                            StoneLabel.Content = "Kamień: " + stoneAmount;
+                            StoneLabel.Content = "Stone: " + stoneAmount;
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Nie możesz budować poza mapę!");
+                        MessageBox.Show("You can't set something outside the map");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Nie masz kamienia!");
+                    MessageBox.Show("You don't have stone!");
                 }
             }
 
@@ -294,8 +294,8 @@ namespace App
                 stoneAmount = 0;
                 maxWood = 0;
                 maxStone = 0;
-                WoodLabel.Content = "Drewno: " + woodAmount;
-                StoneLabel.Content = "Kamień: " + stoneAmount;
+                WoodLabel.Content = "Wood: " + woodAmount;
+                StoneLabel.Content = "Stone: " + stoneAmount;
                 for (int i = 0; i < mapHeight; i++)
                 {
                     for (int j = 0; j < mapWidth; j++)
@@ -309,7 +309,7 @@ namespace App
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Błąd wczytywania mapy: " + ex.Message);
+                MessageBox.Show("There's a problem with loading a map: " + ex.Message);
             }
         }
 
@@ -397,8 +397,8 @@ namespace App
                 stoneAmount = 0;
                 maxWood = 0;
                 maxStone = 0;
-                WoodLabel.Content = "Drewno: " + woodAmount;
-                StoneLabel.Content = "Kamień: " + stoneAmount;
+                WoodLabel.Content = "Wood: " + woodAmount;
+                StoneLabel.Content = "Stone: " + stoneAmount;
 
                 for (int i = 0; i < mapHeight; i++)
                 {
@@ -413,7 +413,7 @@ namespace App
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Błąd wczytywania mapy: " + ex.Message);
+                MessageBox.Show("There's a problem with loading a map: " + ex.Message);
             }
         }
 
@@ -501,8 +501,8 @@ namespace App
                 stoneAmount = 0;
                 maxWood = 0;
                 maxStone = 0;
-                WoodLabel.Content = "Drewno: " + woodAmount;
-                StoneLabel.Content = "Kamień: " + stoneAmount;
+                WoodLabel.Content = "Wood: " + woodAmount;
+                StoneLabel.Content = "Stone: " + stoneAmount;
 
                 for (int i = 0; i < mapHeight; i++)
                 {
@@ -517,7 +517,7 @@ namespace App
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Błąd wczytywania mapy: " + ex.Message);
+                MessageBox.Show("There's a problem with loading a map: " + ex.Message);
             }
         }
 
@@ -556,15 +556,15 @@ namespace App
 
         private void Moving_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Aby się poruszać, posługuj się klawiszami WASD");
+            MessageBox.Show("To move around use WSAD keys");
         }
 
         private void Put_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Klawisz `B`, aby zniszczyć drzewo/skałę. Użyj strzałek, aby wybrać kierunek. Klawiszem `P` postaw drewno a klawiszem `K` kamień");
+            MessageBox.Show("Use `B`, to break wood/stone. Use arrow keys to choose direction. Use `P` to set wood and use `K` to set stone");
         }
 
-        private void Controll_Click(object sender, RoutedEventArgs e)
+        private void Control_Click(object sender, RoutedEventArgs e)
         {
             Grid.Visibility = Visibility.Hidden;
             MapGrid.Visibility = Visibility.Hidden;
