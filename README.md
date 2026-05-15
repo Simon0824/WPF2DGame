@@ -1,5 +1,5 @@
 # WPF2DGame
-WPF2DGame is a desktop video game that represents a tile-based 2d game with resources collection (wood and stone).
+WPF2DGame is a desktop video game that represents a tile-based 2D game with resources collection (wood and stone).
 Game is about collecting all possible stone and wood to pass the level.
 
 ## Technologies and Frameworks
