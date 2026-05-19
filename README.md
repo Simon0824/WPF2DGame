@@ -6,8 +6,8 @@ Game is about collecting all possible stone and wood to pass the level.
 ### WPF
 This is a desktop game built with Windows Presentation Foundation (WPF), using XAML for UI layout and C# for game logic
 
-### .NET 9
-Game is coded in .NET 9
+### .NET 8
+Game is coded in .NET 8
 
 ## Features
 - Menu options with key binding explanation
